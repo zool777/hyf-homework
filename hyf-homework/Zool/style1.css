@@ -1,0 +1,100 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body
+{
+  background-color: rgb(231, 231, 231);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+.container
+{
+  background-color: rgb(70, 71, 71);
+  position: relative;
+  margin: 50px;
+  width: 100%;  
+  max-width: 1000px;
+  min-height: 1000px;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  padding-top: 190px;
+  box-shadow: 0 6px 4px 0 rgba(0,0,0,2),0 2px 8px 0 rgba(0, 0, 0, 8);
+  
+}
+.container .left
+{
+  position: relative;
+  background-color:rgb(177, 177, 177);
+  padding: 250px 20px 0 40px;
+}
+.container .right
+{
+  position: static;
+  background-color: white;
+  padding: 40px;
+  color: black;
+  padding-right: 10px;
+  padding-left: 110px;
+  line-height: 1.5;
+  font-family:Arial, Helvetica, sans-serif
+  
+}
+.topes{
+  position: absolute; 
+}
+.left-left
+{
+  position: absolute;
+  color: white;
+  top: 30px;
+  font-size: large;
+  padding: 0 0 0 30px;
+  line-height: 1.5;
+}
+.right-right
+{
+  position: relative;
+  color: rgb(255, 255, 255);
+  float: right;
+  font-size: 30px;
+  top: 0px;
+  padding: 30px;
+  line-height: 1.5;
+  margin-left: 750px;
+  height: 192px;
+}
+span{
+  font-size: 15px;
+  color: rgb(200, 200, 200);
+}
+
+img
+{
+  width: 25%;
+  position: absolute;
+  margin: 40px 0 0 180px;
+  border-radius: 1em;
+}
+.Expertice
+{
+  padding: 15px 0 15px 0;
+}
+hr{
+  margin: 15px 0 15px 0;
+}
+h2{
+  margin: 15px 0 15px 0;
+}
+h4{
+  margin: 5px 0 5px 0;
+} 
+h5{
+  padding-bottom: 5px;
+}
+li{
+  line-height: 1.5;
+}
