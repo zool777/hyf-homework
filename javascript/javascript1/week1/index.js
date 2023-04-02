@@ -1,6 +1,7 @@
 // A future age calculator:-
 let yearOfBirth = 1987;
 yearFuture = 2027;
+//
 age = yearFuture - yearOfBirth;
 console.log(
   `You Will Be ${age} years old in ${yearFuture}, don't upset you Still young!`
@@ -12,7 +13,7 @@ dogYearFuture = 2027;
 dogYear = dogYearFuture - dogYearOfBirth;
 let shouldShowResultInDogYears = dogYear;
 
-if (shouldShowResultInDogYears!==true) {
+if (shouldShowResultInDogYears !== true) {
   console.log(
     `Your dog will be ${dogYear * 7} dog years old in ${dogYearFuture}`
   );
