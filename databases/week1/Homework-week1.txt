@@ -1,56 +1,59 @@
-SELECT COUNT(*)
+-- 1
+SELECT COUNT(id)
 FROM task;
 
-SELECT COUNT(*)
+-- 2
+SELECT COUNT(id)
 FROM task
 WHERE due_date IS NULL;
 
+-- 3
 SELECT *
 FROM task
-WHERE status_id = (
-		SELECT id
-		FROM STATUS
-		WHERE NAME = 'done'
-		);
+INNER JOIN STATUS ON task.status_id = STATUS.id
+WHERE task.status_id = 3;
 
+-- 4
 SELECT *
 FROM task
-WHERE status_id != (
-		SELECT id
-		FROM STATUS
-		WHERE NAME = 'done'
-		);
+INNER JOIN STATUS ON task.status_id = STATUS.id
+WHERE task.status_id != 3;
 
+-- 5
 SELECT *
 FROM task
 ORDER BY created DESC;
 
+-- 6
 SELECT *
 FROM task
 ORDER BY created DESC LIMIT 1;
 
+-- 7
 SELECT title
 	,due_date
 FROM task
-WHERE title LIKE '%database%'
-	OR description LIKE '%database%';
+WHERE description LIKE '%database%'
+	OR title LIKE '%database%';
 
-SELECT title
-	,(
-		SELECT NAME
-		FROM STATUS
-		WHERE id = task.status_id
-		) AS status_text
-FROM task;
-
-SELECT STATUS.NAME
-	,COUNT(*) AS count
+-- 8
+SELECT task.id
+	,title
+	,STATUS.NAME AS "Status as TEXT"
 FROM task
 INNER JOIN STATUS ON task.status_id = STATUS.id
-GROUP BY STATUS.id;
+ORDER BY STATUS.NAME;
 
+-- 9
+SELECT STATUS.NAME
+	,COUNT(status_id)
+FROM task
+INNER JOIN STATUS ON task.status_id = STATUS.id
+GROUP BY status_id;
+
+-- 10
 SELECT STATUS.NAME
 FROM task
 INNER JOIN STATUS ON task.status_id = STATUS.id
-GROUP BY STATUS.id
-ORDER BY COUNT(*) DESC;
+GROUP BY STATUS.NAME
+ORDER BY COUNT(task.status_id) DESC;
