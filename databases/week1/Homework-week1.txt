@@ -1,0 +1,56 @@
+SELECT COUNT(*)
+FROM task;
+
+SELECT COUNT(*)
+FROM task
+WHERE due_date IS NULL;
+
+SELECT *
+FROM task
+WHERE status_id = (
+		SELECT id
+		FROM STATUS
+		WHERE NAME = 'done'
+		);
+
+SELECT *
+FROM task
+WHERE status_id != (
+		SELECT id
+		FROM STATUS
+		WHERE NAME = 'done'
+		);
+
+SELECT *
+FROM task
+ORDER BY created DESC;
+
+SELECT *
+FROM task
+ORDER BY created DESC LIMIT 1;
+
+SELECT title
+	,due_date
+FROM task
+WHERE title LIKE '%database%'
+	OR description LIKE '%database%';
+
+SELECT title
+	,(
+		SELECT NAME
+		FROM STATUS
+		WHERE id = task.status_id
+		) AS status_text
+FROM task;
+
+SELECT STATUS.NAME
+	,COUNT(*) AS count
+FROM task
+INNER JOIN STATUS ON task.status_id = STATUS.id
+GROUP BY STATUS.id;
+
+SELECT STATUS.NAME
+FROM task
+INNER JOIN STATUS ON task.status_id = STATUS.id
+GROUP BY STATUS.id
+ORDER BY COUNT(*) DESC;

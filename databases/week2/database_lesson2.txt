@@ -1,0 +1,31 @@
+-- 1. Get all the tasks assigned to users whose email ends in @spotify.com
+-- with using aliases:-
+SELECT *
+FROM task t
+INNER JOIN user_task ut ON t.id = ut.task_id
+INNER JOIN user u ON ut.user_id = u.id
+WHERE u.email LIKE '%@spotify.com';
+
+-- 2. Get all the tasks for 'Donald Duck' with status 'Not started'
+SELECT t.title
+	,s.NAME
+FROM task t
+INNER JOIN user_task ut ON t.id = ut.task_id
+INNER JOIN user u ON ut.user_id = u.id
+INNER JOIN STATUS s ON t.status_id = s.id
+WHERE u.NAME = 'Donald Duck'
+	AND s.NAME = 'Not started';
+
+-- 3.Get all the tasks for 'Maryrose Meadows' that were created in september (hint: month(created)=month_number)
+SELECT *
+FROM task t
+INNER JOIN user_task ut ON t.id = ut.task_id
+INNER JOIN user u ON ut.user_id = u.id
+WHERE u.NAME = 'Maryrose Meadows'
+	AND MONTH(t.created) = 9;
+
+-- 4.Find how many tasks where created in each month, e.g.october, november
+SELECT MONTHNAME(created)
+	,COUNT(id)
+FROM task
+GROUP BY MONTHNAME(created);
