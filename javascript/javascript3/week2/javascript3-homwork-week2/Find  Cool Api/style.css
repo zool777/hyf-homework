@@ -1,0 +1,32 @@
+h1 {
+  text-align: center;
+}
+
+#computer-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 20px auto;
+  max-width: 1200px;
+}
+
+.computer-card {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin: 10px;
+  padding: 10px;
+  width: 300px;
+}
+
+.computer-card h2 {
+  margin: 0;
+}
+
+.computer-card p {
+  margin: 5px 0;
+}
+
+.computer-card .price {
+  color: green;
+  font-weight: bold;
+}
