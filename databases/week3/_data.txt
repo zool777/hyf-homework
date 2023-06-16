@@ -1,0 +1,272 @@
+-- Drop and create database
+DROP DATABASE
+
+IF EXISTS `data`;
+	CREATE DATABASE
+
+IF NOT EXISTS `data`;
+	USE `data`;
+
+-- Create `meal` table
+CREATE TABLE `meal` (
+	`meal_id` INT NOT NULL PRIMARY KEY AUTO_INCREMENT
+	,`title` VARCHAR(200) NOT NULL
+	,`description` VARCHAR(200) NOT NULL
+	,`location` VARCHAR(200) NOT NULL
+	,`meal_datetime` DATETIME NOT NULL
+	,`max_reservations` INT NOT NULL
+	,`price` DECIMAL(5, 2) NOT NULL
+	,`created_date` DATETIME NOT NULL
+	) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
+-- Create `reservation` table
+CREATE TABLE `reservation` (
+	`reservation_id` INT NOT NULL PRIMARY KEY AUTO_INCREMENT
+	,`guests` INT NOT NULL
+	,`reservation_date` DATETIME NOT NULL
+	,`phonenumber` VARCHAR(200) NOT NULL
+	,`contact_name` VARCHAR(200) NOT NULL
+	,`contact_email` VARCHAR(200) NOT NULL
+	,`created_date` DATETIME NOT NULL
+	,`meal_id` INT NOT NULL
+	,CONSTRAINT `reservation_ibfk_1` FOREIGN KEY (`meal_id`) REFERENCES `meal`(`meal_id`) ON DELETE CASCADE
+	) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
+-- Create `review` table
+CREATE TABLE `review` (
+	`review_id` INT NOT NULL PRIMARY KEY AUTO_INCREMENT
+	,`title` VARCHAR(200) NOT NULL
+	,`description` VARCHAR(200) NOT NULL
+	,`stars` INT NOT NULL
+	,`review_datetime` DATETIME
+	,`meal_id` INT NOT NULL
+	,CONSTRAINT `review_ibfk_1` FOREIGN KEY (`meal_id`) REFERENCES `meal`(`meal_id`) ON DELETE CASCADE
+	) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
+
+-- Insert into `meal` table
+INSERT INTO `meal` (
+	`title`
+	,`description`
+	,`location`
+	,`meal_datetime`
+	,`max_reservations`
+	,`price`
+	,`created_date`
+	)
+VALUES (
+	'Meal 1'
+	,'Delicious Italian cuisine with a variety of pasta dishes.'
+	,'Location 1'
+	,'2023-06-02 18:00:00'
+	,10
+	,15.99
+	,'2023-06-01 10:00:00'
+	)
+	,(
+	'Meal 2'
+	,'Enjoy a wide selection of fresh sushi rolls.'
+	,'Location 2'
+	,'2023-06-03 19:30:00'
+	,8
+	,12.50
+	,'2023-06-01 14:00:00'
+	)
+	,(
+	'Meal 3'
+	,'Indulge in mouthwatering steaks and grilled specialties.'
+	,'Location 3'
+	,'2023-06-04 12:00:00'
+	,6
+	,9.99
+	,'2023-06-02 09:30:00'
+	);
+
+
+-- Insert into `reservation` table
+INSERT INTO `reservation` (
+	`guests`
+	,`reservation_date`
+	,`phonenumber`
+	,`contact_name`
+	,`contact_email`
+	,`created_date`
+	,`meal_id`
+	)
+VALUES (
+	2
+	,'2023-06-02 10:00:00'
+	,'1234567890'
+	,'Dodo sodo'
+	,'dodo@mail.com'
+	,NOW()
+	,1
+	)
+	,(
+	3
+	,'2023-06-03 16:30:00'
+	,'9876543210'
+	,'Salim alsoha'
+	,'salim@outlook.com'
+	,NOW()
+	,2
+	)
+	,(
+	4
+	,'2023-06-04 19:30:00'
+	,'5555555555'
+	,'Soso alkoso'
+	,'soso@hotmail.com'
+	,NOW()
+	,3
+	)
+	,(
+	1
+	,'2023-06-05 12:00:00'
+	,'1111111111'
+	,'Kaku saku'
+	,'kaku@gmail.com'
+	,NOW()
+	,4
+	);
+
+
+-- Insert into `review` table
+INSERT INTO `review` (
+	`title`
+	,`description`
+	,`stars`
+	,`review_datetime`
+	,`meal_id`
+	)
+VALUES (
+	'Great meal!'
+	,'The food was amazing and the service was excellent.'
+	,5
+	,'2023-06-03 10:30:00'
+	,1
+	)
+	,(
+	'Average experience'
+	,'The meal was okay, but nothing special.'
+	,3
+	,'2023-06-04 15:45:00'
+	,2
+	)
+	,(
+	'Highly recommended'
+	,'I had a fantastic time and would definitely come back.'
+	,5
+	,'2023-06-05 09:15:00'
+	,3
+	);
+
+-- Get all meals
+SELECT *
+FROM `meal`;
+
+-- Add a new meal
+INSERT INTO `meal` (
+	`title`
+	,`description`
+	,`location`
+	,`meal_datetime`
+	,`max_reservations`
+	,`price`
+	,`created_date`
+	)
+VALUES (
+	'New Meal'
+	,'Description of the new meal'
+	,'Tuborg Havnepark 15'
+	,'2023-06-06 18:30:00'
+	,5
+	,9.99
+	,NOW()
+	);
+
+-- Get a meal with id = 1
+SELECT *
+FROM `meal`
+WHERE `meal_id` = 1;
+
+-- Update a meal with id = 1 (Update the title attribute)
+UPDATE `meal`
+SET `title` = 'Updated Title'
+WHERE `meal_id` = 1;
+
+-- Delete a meal with id = 1
+DELETE
+FROM `meal`
+WHERE `meal_id` = 1;
+
+-- Get all reservations
+SELECT *
+FROM `reservation`;
+
+-- Add a new reservation
+INSERT INTO `reservation` (
+	`guests`
+	,`reservation_date`
+	,`phonenumber`
+	,`contact_name`
+	,`contact_email`
+	,`created_date`
+	,`meal_id`
+	)
+VALUES (
+	5
+	,'2023-06-07 14:00:00'
+	,'5555555555'
+	,'Sarah fuda'
+	,'sarah@example.com'
+	,NOW()
+	,2
+	);
+
+-- Get a reservation with id = 1
+SELECT *
+FROM `reservation`
+WHERE `reservation_id` = 1;
+
+-- Update a reservation with id = 1 (Update the guests attribute)
+UPDATE `reservation`
+SET `guests` = 6
+WHERE `reservation_id` = 1;
+
+-- Delete a reservation with id = 1
+DELETE
+FROM `reservation`
+WHERE `reservation_id` = 1;
+
+-- Get all reviews
+SELECT *
+FROM `review`;
+
+-- Add a new review
+INSERT INTO `review` (
+	`title`
+	,`description`
+	,`stars`
+	,`review_datetime`
+	,`meal_id`
+	)
+VALUES (
+	'Amazing'
+	,'The food and service exceeded my expectations.'
+	,5
+	,'2023-06-07 10:00:00'
+	,2
+	);
+
+-- Get a review with id = 1
+SELECT *
+FROM `review`
+WHERE `review_id` = 1;
+
+-- Update a review with id = 1 (Update the title attribute)
+UPDATE `review`
+SET `title` = 'Updated Review'
+WHERE `review_id` = 1;
+
+-- Delete a review with id = 1
+DELETE
+FROM `review`
+WHERE `review_id` = 1;
