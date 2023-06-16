@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="main.css">
+    <title>Product Search Page</title>
+  </head>
+  <body>
+    <h1>Product Search Page</h1>
+    <label for="search">Search for a Product:</label>
+    <input type="text" id="search" placeholder="Enter a product name..." />
+    <br /><br />
+    <label for="price">Maximum Price:</label>
+    <input type="text" id="price" placeholder="Enter a maximum price..." />
+    <label for="rating">Minimum Rating:</label>
+    <input type="text" id="rating" placeholder="Enter a minimum rating..." />
+    <br /><br />
+    <label for="sort">Sort By:</label>
+    <select id="sort">
+      <option value="alphabetical">Alphabetical</option>
+      <option value="top-rated">Top Rated</option>
+      <option value="cheap-first">Price: Low to High</option>
+      <option value="expensive-first">Price: High to Low</option>
+    </select>
+    <br /><br />
+    <main></main>
+    <script src="hyfBayHelpers.js"></script>
+    <script src="main.js"></script>
+  </body>
+</html>
